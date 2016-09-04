@@ -1,0 +1,26 @@
+ABD	niedziela	16:00	17:30	204,223,224
+BSI	poniedziałek	19:15	20:45	214, 220 (19:15 lub 20)
+CMS	poniedziałek	19:15	20:45	Duża Aula	
+CMS	poniedziałek	2016-09-05 (pon.), godz. 16:30 w 130
+grk 6 września na godz. 9 do wejściowego hallu w głównym gmachu
+syc 6 wrzesnia 15:00 w sali s03 obok bufetu.
+
+
+fillfactor - indexy
+FILLFACTOR jako jedna z właściwości indeksu jest współczynnikiem określającym w procentach, jak będą wypełniane strony indeksu. Inaczej mówiąc, określa ile zostanie wolnego miejsca w każdej stronie na ewentualne nowe rekordy. Przy domyślnych ustawieniach serwer zostawia jedynie minimalną ilość wolnego miejsca w każdej stronie.
+
+W przypadku tabel rzadko modyfikowanych współczynnik ten powinien być duży (lub możemy zostawić ustawienie domyślne). Dzięki temu serwer zostawi mniej wolnego miejsca, przez co drzewo indeksu będzie mniejsze. Gdy tabela jest często aktualizowana (a szczególnie, gdy często wykonujemy INSERT), warto zmniejszyć FILLFACTOR, dzięki czemu rzadziej będzie dochodziło do przepełnienia strony, które skutkuje koniecznością jej podziału i przebudowania drzewa. W tym przypadku jednak drzewo indeksu będzie większe, więc operacja wyszukiwania może wymagać większej liczby odczytów, a sam indeks zajmie więcej miejsca na dysku.
+
+Przy domyślnych ustawieniach współczynnik ten dotyczy wyłącznie poziomu liści. Przy włączonej opcji PAD_INDEX dotyczy również pozostałych węzłów.
+
+Profiler
+
+SQL Server Profiler jest bardzo przydatnym narzędziem zarówno dla programistów, jak i administratorów baz danych. Pozwala ono na podgląd w czasie rzeczywistym zdarzeń związanych z pracą serwera bazy danych. Najczęstszym zastosowaniem jest przechwytywanie instrukcji SQL wykonywanych przez użytkowników. Przechwytywana aktywność może być oglądana na bieżąco oraz zapisywana do pliku lub tabeli bazy danych. Najczęstsze zastosowania narzędzia SQL Server Profiler to:
+
+    Wyszukiwanie błędów i monitorowanie pracy aplikacji. Dzięki narzędziu Profiler możliwe jest przechwycenie wysyłanych przez projektowaną aplikację instrukcji SQL w celu sprawdzenia ich poprawności.
+    Optymalizacja pracy serwera. Profiler dostarcza informacji na temat obciążenia procesora, liczby odczytów i zapisów dyskowych oraz czasu trwania dla każdego wywołania SQL. Dzięki temu administrator może szukać nieoptymalnych, mocno obciążających serwer zapytań lub procedur składowanych w celu ich przepisania lub zmiany indeksów. Profiler jest niezbędny, aby przygotować ślad działania bazy danych dla narzędzia Database Engine Tuning Advisor (omówione w wykładzie 5).
+    Monitorowanie użycia baz danych. Profiler dostarcza informacji na temat użytkownika, który wykonał instrukcję na serwerze, jego konta logowania, aplikacji oraz czasu zdarzenia. Dzięki temu możemy analizować sposób użycia baz danych na serwerze.
+
+Po uruchomieniu narzędzia Profiler wybieramy opcję New Trace. Pojawi się ekran właściwości śledzenia serwera. Możemy użyć jednego ze zdefiniowanych szablonów lub stworzyć własny. Do większości zastosowań bardzo dobry jest domyślny szablon (Standard). Na zakładce Events Selection możemy zmienić wybór przechwytywanych zdarzeń oraz informacji na ich temat (kolumn). Dostępnych jest bardzo wiele zdarzeń. Profiler pozwala na monitorowanie praktycznie każdego parametru funkcjonowania naszej instancji serwera baz danych. Możemy również założyć filtry, dzięki którym przechwytywane będą wyłącznie zdarzenia spełniające określone kryteria, np. związane z daną aplikacją lub użytkownikiem.
+
+
